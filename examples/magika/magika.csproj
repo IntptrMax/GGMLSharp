@@ -14,14 +14,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Assert\" />
+    <Folder Include="Assets\" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Assert\magika.gguf">
+    <None Update="Assets\magika.gguf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Assert\test">
+    <None Update="Assets\test">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -1586,7 +1586,7 @@ namespace GGMLSharp
 		public extern static void gguf_set_tensor_type(gguf_context* ctx, string name, ggml_type type);
 
 		[DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-		public extern static void gguf_set_tensor_data(gguf_context* ctx, string name, void* data, size_t size);
+		public extern static void gguf_set_tensor_data(gguf_context* ctx, string name, IntPtr data, size_t size);
 
 		[DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
 		public extern static void gguf_write_to_file(gguf_context* ctx, string fname, bool only_meta);
@@ -1595,7 +1595,7 @@ namespace GGMLSharp
 		public extern static size_t gguf_get_meta_size(gguf_context* ctx);
 
 		[DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-		public extern static void gguf_get_meta_data(gguf_context* ctx, void* data);
+		public extern static void gguf_get_meta_data(gguf_context* ctx, IntPtr data);
 
 		[DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
 		public extern static bool ggml_cpu_has_avx();
@@ -2121,6 +2121,13 @@ namespace GGMLSharp
 		[DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
 		public extern static size_t ggml_hash_find_or_insert(ggml_hash_set hash_set, ggml_tensor* key);
 
+
+		#endregion
+
+		#region ggml-cuda.h
+
+		[DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
+		public extern static ggml_backend_t ggml_backend_cuda_init(int device);
 
 		#endregion
 

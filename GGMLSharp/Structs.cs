@@ -25,7 +25,7 @@ namespace GGMLSharp
 		const int GGML_MAX_PARAMS = 2048;
 		const int GGML_MAX_CONTEXTS = 64;
 		const int GGML_MAX_SRC = 10;
-		const int GGML_MAX_NAME = 64;
+		const int GGML_MAX_NAME = 128; // 64?
 		const int GGML_MAX_OP_PARAMS = 64;
 		const int GGML_DEFAULT_N_THREADS = 4;
 		const int GGML_DEFAULT_GRAPH_SIZE = 2048;
@@ -847,19 +847,19 @@ namespace GGMLSharp
 		[StructLayout(LayoutKind.Sequential)]
 		public struct gguf_header
 		{
-			fixed byte magic[4];
+			public fixed byte magic[4];
 
-			uint32_t version;
-
-			/// <summary>
-			/// GGUFv2
-			/// </summary>
-			uint64_t n_tensors;
+			public uint32_t version;
 
 			/// <summary>
 			/// GGUFv2
 			/// </summary>
-			uint64_t n_kv;
+			public uint64_t n_tensors;
+
+			/// <summary>
+			/// GGUFv2
+			/// </summary>
+			public uint64_t n_kv;
 		};
 
 		[StructLayout(LayoutKind.Sequential)]
@@ -877,7 +877,7 @@ namespace GGMLSharp
 			/// GGUFv2
 			/// </summary>
 			public uint64_t n;
-			public byte* data;
+			public IntPtr data;
 		};
 
 		[StructLayout(LayoutKind.Explicit)]

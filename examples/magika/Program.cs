@@ -314,8 +314,8 @@ namespace magika
 
 		static void Main(string[] args)
 		{
-			magika_model model = magika_model_load(@".\Assert\magika.gguf");
-			float[] result_tensor = magika_eval(model, @".\Assert\test");
+			magika_model model = magika_model_load(@".\Assets\magika.gguf");
+			float[] result_tensor = magika_eval(model, @".\Assets\test");
 			List<result> results = new List<result>();
 			for (int i = 0; i < result_tensor.Length; i++)
 			{

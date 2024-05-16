@@ -14,7 +14,7 @@ namespace mnist_cnn
 			Console.WriteLine("MNIST-CNN Demo");
 			Console.WriteLine($"Has Cuda: {Native.ggml_cpu_has_cuda()}");
 
-			byte[] bytes = File.ReadAllBytes(@".\Assert\image.raw");
+			byte[] bytes = File.ReadAllBytes(@".\Assets\image.raw");
 			Console.WriteLine("The image is:");
 			for (int i = 0; i < 28; i++)
 			{
@@ -31,7 +31,7 @@ namespace mnist_cnn
 				digit[i] = bytes[i] / 255.0f;
 			}
 
-			mnist_model model = mnist_model_load(@".\Assert\mnist-cnn-model.gguf");
+			mnist_model model = mnist_model_load(@".\Assets\mnist-cnn-model.gguf");
 			Stopwatch stopwatch = Stopwatch.StartNew();
 
 			int prediction = mnist_eval(model, 1, digit, string.Empty);
@@ -61,12 +61,11 @@ namespace mnist_cnn
 				no_alloc = false,
 			};
 			gguf_context* ctx = Native.gguf_init_from_file(fname, @params);
-
 			if (ctx == null)
 			{
 				throw new FileLoadException("gguf_init_from_file() failed");
 			}
-
+			Native.gguf_free(ctx);
 			model.conv2d_1_kernel = Native.ggml_get_tensor(model.ctx, "kernel1");
 			model.conv2d_1_bias = Native.ggml_get_tensor(model.ctx, "bias1");
 			model.conv2d_2_kernel = Native.ggml_get_tensor(model.ctx, "kernel2");
